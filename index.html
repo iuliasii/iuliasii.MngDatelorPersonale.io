@@ -3,17 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemple Document.cookie MngDatelorPersonale</title>
+    <title>Exemple Document.cookie - Gestionarea Datelor Personale</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Exemple Document.cookie</h1>
+        <h1>Exemple Document.cookie - Gestionarea Datelor Personale</h1>
     </header>
     <main>
-        <button onclick="setCookie()">Setează un cookie cu o valoare specificată</button><br><br>
-        <button onclick="getCookie()">Afișează cookie-uri</button><br><br>
-        <button onclick="deleteUserInputCookie()">Șterge cookie-ul 'userInput'</button><br><br>
-        <button onclick="showCookieValue()">Afișează valoarea unui cookie</button><br><br>
+        <button onclick="setCookie()">Setează un cookie cu o valoare specificată</button><br>
+        <button onclick="getCookie()">Afișează cookie-uri</button><br>
+        <button onclick="deleteUserInputCookie()">Șterge cookie-ul 'userInput'</button><br>
+        <button onclick="showCookieValue()">Afișează valoarea unui cookie</button><br>
     </main>
     <footer>
         <p>&copy; 2024 My Project</p>
@@ -31,22 +69,16 @@
         }
 
         function getCookie() {
-    const cookies = document.cookie.split(';');
-    if (cookies.length === 0 || (cookies.length === 1 && cookies[0] === "")) {
-        alert("Nu există cookie-uri setate.");
-    } else {
-        let cookieList = "Cookie-uri existente:\n";
-        cookies.forEach(cookie => {
-            const [name, value] = cookie.split('=').map(c => c.trim());
-            cookieList += `${name}: ${value}\n`;
-        });
-        alert(cookieList);
-    }
-}
-
+            const cookies = document.cookie.split(';').map(cookie => cookie.trim());
+            if (cookies.length === 0 || (cookies.length === 1 && cookies[0] === "")) {
+                alert("Nu există cookie-uri setate.");
+            } else {
+                alert("Cookie-uri existente:\n" + cookies.join("\n"));
+            }
+        }
 
         function deleteUserInputCookie() {
-            document.cookie = "userInput=; expires=Thu, 01 Jan 2050 00:00:00 GMT; SameSite=None; Secure";
+            document.cookie = "userInput=; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure";
             alert("Cookie-ul 'userInput' a fost șters!");
         }
 
